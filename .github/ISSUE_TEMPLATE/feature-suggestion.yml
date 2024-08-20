@@ -1,0 +1,20 @@
+name: Feature Suggestion
+description: Suggest a feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # octopus-configuration-jumpstart: Feature Suggestion
+        Thanks for taking the time to provide a feature suggestion!
+        
+        While the Solutions Engineering team will make a reasonable effort to respond to this request, `octopus-configuration-jumpstart` has no Support Level Agreement (SLA).
+
+  - type: textarea
+    id: feature
+    attributes:
+      label: Feature
+      description: What would you like to see added to octopus-configuration-jumpstart?
+      placeholder: Provide a feature suggestion
+    validations:
+      required: true
+
