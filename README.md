@@ -127,3 +127,11 @@ Each space created in Octopus has a Space Managers team associated with it. This
 ### Default Lifecycle
 
 Each space created in Octopus has a Default Lifecycle. We recommend creating your own lifecycles (as the examples do). The Default Lifecycle is not managed by Terraform and we recommend deleting it from the space after it is created.
+
+## Support
+
+This template is owned and managed by the Octopus Solutions Engineering team. Please file any bug or feature requests with an [issue](https://github.com/OctopusSolutionsEngineering/octopus-configuration-jumpstart/issues).
+
+This template is not officially supported by Octopus. Please do not contact the Octopus support channels regarding octopus-configuration-jumpstart.
+
+If you have found an issue with the [Octopus Deploy Terraform Provider](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy), please file an [issue](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy/issues) at that repository.
