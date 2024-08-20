@@ -1,0 +1,68 @@
+name: 🐞 Bug Report
+description: File a bug/issue
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # octopus-configuration-jumpstart: Bug Report
+        Thanks for taking the time to fill out a bug/issue report!
+        
+        While the Solutions Engineering team will make a reasonable effort to respond to this issue, `octopus-configuration-jumpstart` has no Support Level Agreement (SLA).
+
+  - type: input
+    id: octopus-version
+    attributes:
+      label: Octopus version
+      description: Please provide the version of Octopus you are using.
+      placeholder: e.g., 2023.3.xxxx
+    validations:
+      required: true
+  - type: input
+    id: terraform-version
+    attributes:
+      label: Terraform version
+      description: Please provide the version of Terraform you are using.
+      placeholder: e.g., 0.12.4
+    validations:
+      required: true
+  - type: input
+    id: tfprovider-version
+    attributes:
+      label: Octopus Deploy Terraform Provider version
+      description: Please provide the version of the Octopus Terraform Provider you are using.
+      placeholder: e.g., 0.3.0
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What happened?
+      placeholder: Describe the issue you experienced
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Terraform log output
+      description: Copy the log output here
+      placeholder: Log output
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Reproduction steps
+      description: If there are specific steps that you took when you encountered the problem, please outline them here.
+      placeholder: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: more-information
+    attributes:
+      label: More Information
+      description: Anything else that can help us solve the problem, logs, links, screenshots, suspicions, add them here.
+      placeholder: Tell us more
+    validations:
+      required: false
+
