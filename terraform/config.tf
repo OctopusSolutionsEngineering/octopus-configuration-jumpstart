@@ -1,6 +1,6 @@
 terraform {
-  #backend "azurerm" {
-  backend "s3" {
+  backend "azurerm" {
+  #backend "s3" {
   }
 
   required_providers {
