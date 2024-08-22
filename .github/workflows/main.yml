@@ -9,7 +9,7 @@ on:
 
 jobs:
   apply-terraform-azure-backend:
-    if: vars.BACKEND == 'azure'
+    if: vars.BACKEND == 'azurerm'
     name: Apply Terraform with Azure backend
     runs-on: ubuntu-latest
     permissions:
@@ -24,6 +24,13 @@ jobs:
           tenant-id: ${{ secrets.ARM_TENANT_ID }}
           subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       - uses: hashicorp/setup-terraform@v3
+      - name: Override the backend used by Terraform
+        run: |-
+          cat <<EOT >> ./terraform/backend_override.tf
+          terraform {
+            backend "azurerm" {}
+          }
+          EOT
       - name: Terraform Init
         id: terraform-init
         working-directory: terraform/
@@ -70,6 +77,13 @@ jobs:
           role-session-name: githubworkflow
           aws-region: us-east-2
       - uses: hashicorp/setup-terraform@v3
+      - name: Override the backend used by Terraform
+        run: |-
+          cat <<EOT >> ./terraform/backend_override.tf
+          terraform {
+            backend "s3" {}
+          }
+          EOT
       - name: Terraform Init
         id: terraform-init
         working-directory: terraform/

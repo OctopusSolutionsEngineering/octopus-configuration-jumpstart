@@ -58,29 +58,7 @@ The worflows provided in this repo use OIDC to authorize to Azure and AWS backen
 
 ### GitHub Variables
 
-* `BACKEND` - set to `azure` if using Azure as a backend, `s3` if using S3 as a backend. **Only set when you are prepared for the workflow to run**
-
-### terraform/config.tf
-
-**If using S3 backend**
-
-Comment out line 2 and uncomment line 3. It should look like this:
-
-```hcl
-  #backend "azurerm" {
-  backend "s3" {
-  }
-```
-
-**If using Azure backend**
-
-Comment out line 3 and uncomment line 2. It should look like this:
-
-```hcl
-  backend "azurerm" {
-  #backend "s3" {
-  }
-```
+* `BACKEND` - set to `azurerm` if using Azure as a backend, `s3` if using S3 as a backend. **Only set when you are prepared for the workflow to run**
 
 ### terraform/platform_engineering_team.tf
 
