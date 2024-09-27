@@ -27,7 +27,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
       - name: Override the backend used by Terraform
         run: |-
-          cat <<EOT >> ./terraform/backend_override.tf
+          cat <<EOT >> ./terraform/multispace/backend_override.tf
           terraform {
             backend "azurerm" {}
           }
@@ -80,7 +80,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
       - name: Override the backend used by Terraform
         run: |-
-          cat <<EOT >> ./terraform/backend_override.tf
+          cat <<EOT >> ./terraform/multispace/backend_override.tf
           terraform {
             backend "s3" {}
           }
