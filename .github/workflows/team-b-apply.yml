@@ -1,12 +1,17 @@
-name: Team A - Destroy Terraform
+name: Team B - Apply Terraform
 
 on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - .github/workflows/team-b-apply.yml
+      - terraform/team-b/**
   workflow_dispatch:
 
 jobs:
-  destroy-terraform-azure-backend:
+  apply-terraform-azure-backend:
     if: vars.BACKEND == 'azurerm'
-    name: Destroy Terraform with Azure backend
+    name: Apply Terraform with Azure backend
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -22,14 +27,14 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
       - name: Override the backend used by Terraform
         run: |-
-          cat <<EOT >> ./terraform/team-a/backend_override.tf
+          cat <<EOT >> ./terraform/team-b/backend_override.tf
           terraform {
             backend "azurerm" {}
           }
           EOT
       - name: Terraform Init
         id: terraform-init
-        working-directory: terraform/team-a
+        working-directory: terraform/team-b
         env:
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -38,67 +43,66 @@ jobs:
           RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
           STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
           CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
-          TFSTATE_KEY: ${{ secrets.TEAM_A_STATEKEY }}
+          TFSTATE_KEY: ${{ secrets.TEAM_B_STATEKEY }}
         run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="key=$TFSTATE_KEY"
       - name: Terraform Apply
         id: terraform-apply
-        working-directory: terraform/team-a
+        working-directory: terraform/team-b
         env:
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
           ARM_USE_OIDC: true
           OCTOPUS_URL: ${{ secrets.OCTOPUS_URL }}
-          OCTOPUS_APIKEY: ${{ secrets.TEAM_A_APIKEY }}
+          OCTOPUS_APIKEY: ${{ secrets.TEAM_B_APIKEY }}
           TF_VAR_account_username: ${{ secrets.ACCOUNT_USERNAME }}
           TF_VAR_account_password: ${{ secrets.ACCOUNT_PASSWORD }}
           TF_VAR_azure_account_application_id: ${{ secrets.ARM_CLIENT_ID }}
           TF_VAR_azure_account_password: ${{ secrets.ARM_CLIENT_SECRET }}
           TF_VAR_azure_account_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           TF_VAR_azure_account_tenant_id: ${{ secrets.ARM_TENANT_ID }}
-        run: terraform apply -destroy -auto-approve
-
-  destroy-terraform-s3-backend:
+        run: terraform apply -auto-approve
+  apply-terraform-s3-backend:
     if: vars.BACKEND == 's3'
-    name: Destroy Terraform with S3 backend
+    name: Apply Terraform with S3 backend
     runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-      - name: Override the backend used by Terraform
-        run: |-
-          cat <<EOT >> ./terraform/team-a/backend_override.tf
-          terraform {
-            backend "s3" {}
-          }
-          EOT
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::623990049154:role/OctopusConfigJumpstart
           role-session-name: githubworkflow
           aws-region: us-east-2
+      - uses: hashicorp/setup-terraform@v3
+      - name: Override the backend used by Terraform
+        run: |-
+          cat <<EOT >> ./terraform/team-b/backend_override.tf
+          terraform {
+            backend "s3" {}
+          }
+          EOT
       - name: Terraform Init
         id: terraform-init
-        working-directory: terraform/team-a
+        working-directory: terraform/team-b
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           S3_REGION: ${{ secrets.S3_REGION }}
-          TFSTATE_KEY: ${{ secrets.TEAM_A_STATEKEY }}
+          TFSTATE_KEY: ${{ secrets.TEAM_B_STATEKEY }}
         run: terraform init -backend-config="bucket=$S3_BUCKET" -backend-config="region=$S3_REGION" -backend-config="key=$TFSTATE_KEY"
       - name: Terraform Apply
         id: terraform-apply
-        working-directory: terraform/team-a
+        working-directory: terraform/team-b
         env:
           OCTOPUS_URL: ${{ secrets.OCTOPUS_URL }}
-          OCTOPUS_APIKEY: ${{ secrets.TEAM_A_APIKEY }}
+          OCTOPUS_APIKEY: ${{ secrets.TEAM_B_APIKEY }}
           TF_VAR_account_username: ${{ secrets.ACCOUNT_USERNAME }}
           TF_VAR_account_password: ${{ secrets.ACCOUNT_PASSWORD }}
           TF_VAR_azure_account_application_id: ${{ secrets.ARM_CLIENT_ID }}
           TF_VAR_azure_account_password: ${{ secrets.ARM_CLIENT_SECRET }}
           TF_VAR_azure_account_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           TF_VAR_azure_account_tenant_id: ${{ secrets.ARM_TENANT_ID }}
-        run: terraform apply -destroy -auto-approve
+        run: terraform apply -auto-approve
