@@ -3,7 +3,7 @@ data "octopusdeploy_space" "default" {
 }
 
 module "default_dev_test_prod" {
-  source = "./modules/preset_envs/dev_test_prod"
+  source = "../modules/preset_envs/dev_test_prod"
 
   providers = {
     octopusdeploy = octopusdeploy
@@ -13,7 +13,7 @@ module "default_dev_test_prod" {
 }
 
 module "default_account" {
-  source = "./modules/account/username_password"
+  source = "../modules/account/username_password"
 
   name     = "Test Account"
   username = var.account_username
@@ -35,14 +35,14 @@ module "default_azure_account" {
 */
 
 module "default_docker_registry" {
-  source = "./modules/feeds/docker_container_registry"
+  source = "../modules/feeds/docker_container_registry"
 
   name     = "Docker Hub"
   space_id = data.octopusdeploy_space.default.id
 }
 
 module "default_helm_feed" {
-  source = "./modules/feeds/helm_feed"
+  source = "../modules/feeds/helm_feed"
 
   name     = "Helm - Stable"
   space_id = data.octopusdeploy_space.default.id

@@ -29,7 +29,7 @@ jobs:
           EOT
       - name: Terraform Init
         id: terraform-init
-        working-directory: terraform/
+        working-directory: terraform/multispace
         env:
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -42,7 +42,7 @@ jobs:
         run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="key=$TFSTATE_KEY"
       - name: Terraform Apply
         id: terraform-apply
-        working-directory: terraform/
+        working-directory: terraform/multispace
         env:
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -83,7 +83,7 @@ jobs:
           aws-region: us-east-2
       - name: Terraform Init
         id: terraform-init
-        working-directory: terraform/
+        working-directory: terraform/multispace
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           S3_REGION: ${{ secrets.S3_REGION }}
@@ -91,7 +91,7 @@ jobs:
         run: terraform init -backend-config="bucket=$S3_BUCKET" -backend-config="region=$S3_REGION" -backend-config="key=$TFSTATE_KEY"
       - name: Terraform Apply
         id: terraform-apply
-        working-directory: terraform/
+        working-directory: terraform/multispace
         env:
           OCTOPUS_URL: ${{ secrets.OCTOPUS_URL }}
           OCTOPUS_APIKEY: ${{ secrets.OCTOPUS_APIKEY }}

@@ -1,5 +1,5 @@
 module "managed_space_1" {
-  source = "./modules/space"
+  source = "../modules/space"
 
   providers = {
     octopusdeploy = octopusdeploy
@@ -12,7 +12,7 @@ module "managed_space_1" {
 }
 
 module "managed_space_1_dev_test_prod" {
-  source = "./modules/preset_envs/dev_test_prod"
+  source = "../modules/preset_envs/dev_test_prod"
 
   providers = {
     octopusdeploy = octopusdeploy
@@ -22,7 +22,7 @@ module "managed_space_1_dev_test_prod" {
 }
 
 module "managed_space_1_dev_team" {
-  source = "./modules/team"
+  source = "../modules/team"
 
   providers = {
     octopusdeploy = octopusdeploy
@@ -59,7 +59,7 @@ resource "octopusdeploy_scoped_user_role" "managed_space_1_dev_team_deployment_c
 }
 
 module "managed_space_1_qa_team" {
-  source = "./modules/team"
+  source = "../modules/team"
 
   providers = {
     octopusdeploy = octopusdeploy
@@ -86,14 +86,14 @@ resource "octopusdeploy_scoped_user_role" "managed_space_1_qa_team_deployment_cr
 }
 
 module "managed_space_1_docker_registry" {
-  source = "./modules/feeds/docker_container_registry"
+  source = "../modules/feeds/docker_container_registry"
 
   name     = "Docker Hub"
   space_id = module.managed_space_1.id
 }
 
 module "managed_space_1_helm_feed" {
-  source = "./modules/feeds/helm_feed"
+  source = "../modules/feeds/helm_feed"
 
   name     = "Helm - Stable"
   space_id = module.managed_space_1.id

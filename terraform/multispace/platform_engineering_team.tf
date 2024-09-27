@@ -1,5 +1,5 @@
 module "platform_engineering_team" {
-  source = "./modules/team"
+  source = "../modules/team"
 
   providers = {
     octopusdeploy = octopusdeploy
