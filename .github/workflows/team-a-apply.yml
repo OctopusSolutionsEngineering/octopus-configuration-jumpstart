@@ -1,4 +1,4 @@
-name: Apply Terraform - team-a Example
+name: Team A - Apply Terraform
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Apply Terraform - Multispace Example
+name: Multispace - Apply Terraform
 
 on:
   push:
