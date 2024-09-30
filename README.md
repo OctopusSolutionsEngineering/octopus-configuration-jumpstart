@@ -28,7 +28,7 @@ This is a very privileged user account due to the nature of the usage. It is imp
 
 **Note**
 
-If you are using a folder per space and separate statefiles per space, you may also consider different Octopus user accounts per folder. You can see examples of this in the `team-a` and `team-b` examples.
+If you are using a folder per space and separate state files per space, you may also consider different Octopus user accounts per folder. You can see examples of this in the `team-a` and `team-b` examples.
 
 ### Backend Authorization
 
