@@ -9,8 +9,8 @@ jobs:
     secrets: inherit
     with:
       terraform-folder: multispace
-      STATE_KEY: ${{ secrets.TFSTATE_KEY }}
-      OCTOPUS_APIKEY: ${{ secrets.OCTOPUS_APIKEY }}
+      state-key-secret-name: "TFSTATE_KEY"
+      octopus-apikey-secret-name: "OCTOPUS_APIKEY"
     permissions:
       id-token: write
       contents: read
