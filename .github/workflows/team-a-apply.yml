@@ -14,6 +14,8 @@ jobs:
     secrets: inherit
     with:
       terraform-folder: team-a
+      STATE_KEY: ${{ secrets.TEAM_A_STATEKEY }}
+      OCTOPUS_APIKEY: ${{ secrets.TEAM_A_APIKEY }}
     permissions:
       id-token: write
       contents: read

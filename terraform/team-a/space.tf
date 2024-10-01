@@ -6,7 +6,7 @@ module "team_a_space" {
   }
 
   name        = "Team A's Space"
-  description = "Managed spacee for Team A"
+  description = "Managed space for Team A"
   space_managers_team_members = [data.octopusdeploy_users.octopus_config_service_account.users[0].id]
   is_task_queue_stopped = false
 }
