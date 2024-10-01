@@ -1,9 +1,9 @@
 on:
     workflow_call:
-        inputs:
-            terraform-folder:
-                required: true
-                type: string
+      inputs:
+        terraform-folder:
+          required: true
+          type: string
 
 jobs:
     apply-terraform-azure-backend:
