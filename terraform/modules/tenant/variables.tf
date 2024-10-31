@@ -9,7 +9,6 @@ variable "description" {
 
 variable "space_id" {
   type    = string
-  default = null
 }
 
 variable "tenant_tags" {
