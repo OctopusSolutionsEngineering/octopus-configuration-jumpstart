@@ -14,5 +14,4 @@ variable "tenant_id" {
 
 variable "space_id" {
   type    = string
-  default = null
 }

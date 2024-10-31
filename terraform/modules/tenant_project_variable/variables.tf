@@ -1,4 +1,8 @@
-variable "library_variable_set_id" {
+variable "environment_id" {
+  type = string
+}
+
+variable "project_id" {
   type = string
 }
 
