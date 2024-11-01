@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/multispace-apply.yml
       - terraform/multispace/**
+      - terraform/modules/**
   workflow_dispatch:
 
 jobs:

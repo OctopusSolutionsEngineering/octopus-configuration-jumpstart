@@ -94,6 +94,21 @@ variable "is_version_controlled" {
   default = false
 }
 
+variable "jira_service_management_extension_settings_connection_id" {
+  type = string
+  default = null
+}
+
+variable "jira_service_management_extension_settings_is_enabled" {
+  type = bool
+  default = false
+}
+
+variable "jira_service_management_extension_settings_service_desk_project_name" {
+  type = string
+  default = null
+}
+
 variable "lifecycle_id" {
   type = string
 }
@@ -107,6 +122,11 @@ variable "project_group_id" {
 }
 
 variable "release_notes_template" {
+  type = string
+  default = null
+}
+
+variable "slug" {
   type = string
   default = null
 }

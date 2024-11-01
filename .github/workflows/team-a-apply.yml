@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/team-a-apply.yml
       - terraform/team-a/**
+      - terraform/modules/**
   workflow_dispatch:
 
 jobs:
