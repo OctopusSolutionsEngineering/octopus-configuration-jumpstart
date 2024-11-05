@@ -82,3 +82,12 @@ module "test_project" {
   space_id = data.octopusdeploy_space.default.id
   tenanted_deployment_participation = "Tenanted"
 }
+
+module "internal_test_project" {
+  source = "../modules/tenant_project"
+
+  tenant_id = module.internal_tenant.id
+  project_id = module.test_project.id
+  environment_ids = [module.default_dev_test_prod.dev_env_id]
+  space_id = data.octopusdeploy_space.default.id
+}
