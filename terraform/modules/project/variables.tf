@@ -96,7 +96,7 @@ variable "is_version_controlled" {
 
 variable "jira_service_management_extension_settings_connection_id" {
   type = string
-  default = null
+  default = ""
 }
 
 variable "jira_service_management_extension_settings_is_enabled" {
@@ -106,7 +106,7 @@ variable "jira_service_management_extension_settings_is_enabled" {
 
 variable "jira_service_management_extension_settings_service_desk_project_name" {
   type = string
-  default = null
+  default = ""
 }
 
 variable "lifecycle_id" {
