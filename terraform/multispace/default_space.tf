@@ -47,3 +47,19 @@ module "default_helm_feed" {
   name     = "Helm - Stable"
   space_id = data.octopusdeploy_space.default.id
 }
+
+module "internal_tenant" {
+  source = "../modules/tenant"
+
+  name     = "_Internal"
+  description = "Tenant for internal testing"
+  space_id = data.octopusdeploy_space.default.id
+}
+
+module "customer_a_tenant" {
+  source = "../modules/tenant"
+
+  name     = "Customer A"
+  description = "Tenant for Customer A"
+  space_id = data.octopusdeploy_space.default.id
+}
