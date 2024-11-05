@@ -11,5 +11,5 @@ output "prod_env_id" {
 }
 
 output "standard_lifecycle_id" {
-  value = module.standard_lifecycle.id
+  value = octopusdeploy_lifecycle.standard_lifecycle.id
 }
