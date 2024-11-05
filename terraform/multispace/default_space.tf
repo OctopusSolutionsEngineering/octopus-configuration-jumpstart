@@ -63,3 +63,22 @@ module "customer_a_tenant" {
   description = "Tenant for Customer A"
   space_id = data.octopusdeploy_space.default.id
 }
+
+module "test_project_group" {
+  source = "../modules/project_group"
+
+  name = "Test Project Group"
+  description = "Testing project group creation via Terraform"
+  space_id = data.octopusdeploy_space.default.id
+}
+
+module "test_project" {
+  source = "../modules/project"
+
+  name = "Test Project"
+  description = "Testing project creation via Terraform"
+  lifecycle_id = module.default_dev_test_prod.standard_lifecycle_id
+  project_group_id = module.test_project_group.id
+  space_id = data.octopusdeploy_space.default.id
+  tenanted_deployment_participation = "Tenanted"
+}
