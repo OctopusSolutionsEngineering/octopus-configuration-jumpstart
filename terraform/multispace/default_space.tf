@@ -95,6 +95,7 @@ module "internal_tenant" {
   name     = "_Internal"
   description = "Tenant for internal testing"
   space_id = data.octopusdeploy_space.default.id
+  tenant_tags = [module.release_ring_alpha.canonical_tag_name]
 }
 
 module "customer_a_tenant" {
@@ -103,6 +104,16 @@ module "customer_a_tenant" {
   name     = "Customer A"
   description = "Tenant for Customer A"
   space_id = data.octopusdeploy_space.default.id
+  tenant_tags = [module.release_ring_beta.canonical_tag_name]
+}
+
+module "customer_b_tenant" {
+  source = "../modules/tenant"
+
+  name     = "Customer B"
+  description = "Tenant for Customer B"
+  space_id = data.octopusdeploy_space.default.id
+  tenant_tags = [module.release_ring_stable.canonical_tag_name]
 }
 
 module "test_project_group" {
