@@ -48,6 +48,14 @@ module "default_helm_feed" {
   space_id = data.octopusdeploy_space.default.id
 }
 
+module "release_ring_tag_set" {
+  source = "../modules/tag_set"
+
+  name = "Release Ring"
+  description = "Tag set for release rings"
+  space_id = data.octopusdeploy_space.default.id
+}
+
 module "internal_tenant" {
   source = "../modules/tenant"
 
