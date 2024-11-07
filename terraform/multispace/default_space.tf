@@ -56,6 +56,39 @@ module "release_ring_tag_set" {
   space_id = data.octopusdeploy_space.default.id
 }
 
+module "release_ring_alpha" {
+  source = "../modules/tag"
+
+  name = "Alpha"
+  color = "#0d80d8"
+  description = "Alpha release ring"
+  sort_order = 0
+  tag_set_id = module.release_ring_tag_set.id
+  tag_set_space_id = data.octopusdeploy_space.default.id
+}
+
+module "release_ring_beta" {
+  source = "../modules/tag"
+
+  name = "Beta"
+  color = "#0d80d8"
+  description = "Beta release ring"
+  sort_order = 1
+  tag_set_id = module.release_ring_tag_set.id
+  tag_set_space_id = data.octopusdeploy_space.default.id
+}
+
+module "release_ring_stable" {
+  source = "../modules/tag"
+
+  name = "Stable"
+  color = "#0d80d8"
+  description = "Stable release ring"
+  sort_order = 2
+  tag_set_id = module.release_ring_tag_set.id
+  tag_set_space_id = data.octopusdeploy_space.default.id
+}
+
 module "internal_tenant" {
   source = "../modules/tenant"
 
