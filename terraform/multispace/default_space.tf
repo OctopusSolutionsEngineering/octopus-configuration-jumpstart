@@ -114,7 +114,7 @@ module "internal_tenant" {
   name     = "_Internal"
   description = "Tenant for internal testing"
   space_id = data.octopusdeploy_space.default.id
-  tenant_tags = [module.release_ring_alpha.canonical_tag_name, module.region_us_west_2.canonical_tag_name]
+  tenant_tags = [module.release_ring_alpha.canonical_tag_name] #, module.region_us_west_2.canonical_tag_name]
 }
 
 module "customer_a_tenant" {
