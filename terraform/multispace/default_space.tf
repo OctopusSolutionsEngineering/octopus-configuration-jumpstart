@@ -89,13 +89,32 @@ module "release_ring_stable" {
   tag_set_space_id = data.octopusdeploy_space.default.id
 }
 
+module "region_tag_set" {
+  source = "../modules/tag_set"
+
+  name = "Region"
+  description = "Tag set for regions"
+  space_id = data.octopusdeploy_space.default.id
+}
+
+module "region_us_west_2" {
+  source = "../modules/tag"
+
+  name = "US West 2"
+  color = "#0d80d8"
+  description = "US West 2 region"
+  sort_order = 0
+  tag_set_id = module.region_tag_set.id
+  tag_set_space_id = data.octopusdeploy_space.default.id
+}
+
 module "internal_tenant" {
   source = "../modules/tenant"
 
   name     = "_Internal"
   description = "Tenant for internal testing"
   space_id = data.octopusdeploy_space.default.id
-  tenant_tags = [module.release_ring_alpha.canonical_tag_name]
+  tenant_tags = [module.release_ring_alpha.canonical_tag_name, module.region_us_west_2.canonical_tag_name]
 }
 
 module "customer_a_tenant" {
