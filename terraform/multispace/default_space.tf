@@ -162,3 +162,19 @@ module "internal_test_project" {
   environment_ids = [module.default_dev_test_prod.dev_env_id]
   space_id = data.octopusdeploy_space.default.id
 }
+
+module "test_project_scheduled_trigger" {
+  source = "../modules/project_scheduled_trigger"
+
+  name = "Test Project Scheduled Trigger"
+  description = "Testing project scheduled trigger creation via Terraform"
+  project_id = module.test_project.id
+  space_id = data.octopusdeploy_space.default.id
+
+  schedule_type = "cron_expression_schedule"
+  cron_expression = "0 0 06 * * Mon-Fri"
+  action_type = "deploy_latest_release_action"
+  deploy_latest_release_action_source_environment_id = module.default_dev_test_prod.dev_env_id
+  deploy_latest_release_action_destination_environment_id = module.default_dev_test_prod.test_env_id
+  deploy_latest_release_action_should_redeploy = true
+}
