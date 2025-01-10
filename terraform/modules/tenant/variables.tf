@@ -7,6 +7,11 @@ variable "description" {
   default = null
 }
 
+variable "is_disabled" {
+  type    = bool
+  default = false
+}
+
 variable "space_id" {
   type    = string
 }
