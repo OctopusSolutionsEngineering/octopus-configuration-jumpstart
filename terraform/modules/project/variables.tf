@@ -49,11 +49,6 @@ variable "connectivity_policy" {
   default = null
 }
 
-variable "connectivity_policy_exclude_unhealthy_targets" {
-  type = bool
-  default = true
-}
-
 variable "default_guided_failure_mode" {
   type = string
   default = "EnvironmentDefault"
@@ -107,6 +102,16 @@ variable "is_discreet_channel_release" {
 variable "is_version_controlled" {
   type = bool
   default = false
+}
+
+variable "git_anonymous_persistent_settings" {
+  type = object({
+    url = string
+    base_path = optional(string)
+    default_branch = optional(string)
+    protected_branches = optional(set(string))
+  })
+  default = null
 }
 
 variable "jira_service_management_extension_settings_connection_id" {

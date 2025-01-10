@@ -30,7 +30,17 @@ resource "octopusdeploy_project" "project" {
   deployment_changes_template = var.deployment_changes_template
   description = var.description
 
-  # git anonymous persistent settings
+  dynamic "git_anonymous_persistent_settings" {
+    for_each = var.git_anonymous_persistent_settings[*]
+
+    content {
+      url = git_anonymous_persistent_settings.value.url
+      base_path = git_anonymous_persistent_settings.value.base_path
+      default_branch = git_anonymous_persistent_settings.value.default_branch
+      protected_branches = git_anonymous_persistent_settings.value.protected_branches
+    }
+  }
+
   # git library credential persistent settings
   # git username password persistent settings
 
