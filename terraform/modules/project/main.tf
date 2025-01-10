@@ -72,10 +72,14 @@ resource "octopusdeploy_project" "project" {
 
   # is version controlled
 
-  jira_service_management_extension_settings {
-    is_enabled = var.jira_service_management_extension_settings_is_enabled
-    connection_id = var.jira_service_management_extension_settings_connection_id
-    service_desk_project_name = var.jira_service_management_extension_settings_service_desk_project_name
+  dynamic "jira_service_management_extension_settings" {
+    for_each = var.jira_service_management_extension_settings[*]
+
+    content {
+      is_enabled = jira_service_management_extension_settings.value.is_enabled
+      connection_id = jira_service_management_extension_settings.value.connection_id
+      service_desk_project_name = jira_service_management_extension_settings.value.service_desk_project_name
+    }
   }
 
   release_notes_template = var.release_notes_template

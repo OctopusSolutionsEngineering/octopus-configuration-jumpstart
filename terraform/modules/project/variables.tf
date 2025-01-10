@@ -138,19 +138,13 @@ variable "git_username_password_persistence_settings" {
   sensitive = true
 }
 
-variable "jira_service_management_extension_settings_connection_id" {
-  type = string
-  default = ""
-}
-
-variable "jira_service_management_extension_settings_is_enabled" {
-  type = bool
-  default = false
-}
-
-variable "jira_service_management_extension_settings_service_desk_project_name" {
-  type = string
-  default = ""
+variable "jira_service_management_extension_settings" {
+  type = object({
+    connection_id = string
+    is_enabled = bool
+    service_desk_project_name = string
+  })
+  default = null
 }
 
 variable "lifecycle_id" {
