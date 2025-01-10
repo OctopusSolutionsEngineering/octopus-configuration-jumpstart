@@ -41,6 +41,18 @@ resource "octopusdeploy_project" "project" {
     }
   }
 
+  dynamic "git_library_persistence_settings" {
+    for_each = var.git_library_persistence_settings[*]
+
+    content {
+      git_credential_id = git_library_persistence_settings.value.git_credential_id
+      url = git_library_persistence_settings.value.url
+      base_path = git_library_persistence_settings.value.base_path
+      default_branch = git_library_persistence_settings.value.default_branch
+      protected_branches = git_library_persistence_settings.value.protected_branches
+    }
+  }
+
   # git library credential persistent settings
   # git username password persistent settings
 

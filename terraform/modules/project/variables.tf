@@ -114,6 +114,17 @@ variable "git_anonymous_persistence_settings" {
   default = null
 }
 
+variable "git_library_persistence_settings" {
+  type = object({
+    git_credential_id = string
+    url = string
+    base_path = optional(string)
+    default_branch = optional(string)
+    protected_branches = optional(set(string))
+  })
+  default = null
+}
+
 variable "jira_service_management_extension_settings_connection_id" {
   type = string
   default = ""
