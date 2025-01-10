@@ -46,6 +46,7 @@ variable "connectivity_policy" {
     skip_machine_behavior = optional(string)
     target_roles = optional(list(string))
   })
+  default = null
 }
 
 variable "connectivity_policy_exclude_unhealthy_targets" {
