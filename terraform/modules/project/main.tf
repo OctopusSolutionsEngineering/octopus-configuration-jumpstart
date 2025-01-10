@@ -98,7 +98,7 @@ resource "octopusdeploy_project" "project" {
   tenanted_deployment_participation = var.tenanted_deployment_participation
 
   dynamic "template" {
-    for_each = var.templates[*]
+    for_each = var.templates
 
     content {
       name = template.value.name
