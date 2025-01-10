@@ -14,7 +14,16 @@ resource "octopusdeploy_project" "project" {
 
   auto_create_release = var.auto_create_release
 
-  # connectivity policy
+  dynamic "connectivity_policy" {
+    for_each = var.connectivity_policy[*]
+
+    content {
+      allow_deployments_to_no_targets = connectivity_policy.value.allow_deployments_to_no_targets
+      exclude_unhealthy_targets = connectivity_policy.value.exclude_unhealthy_targets
+      skip_machine_behavior = connectivity_policy.value.skip_machine_behavior
+      target_roles = connectivity_policy.value.target_roles
+    }
+  }
 
   default_guided_failure_mode = var.default_guided_failure_mode
   default_to_skip_if_already_installed = var.default_to_skip_if_already_installed

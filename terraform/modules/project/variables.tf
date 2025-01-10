@@ -39,6 +39,20 @@ variable "cac_git_username" {
   default = null
 }
 
+variable "connectivity_policy" {
+  type = object({
+    allow_deployments_to_no_targets = optional(bool)
+    exclude_unhealthy_targets = optional(bool)
+    skip_machine_behavior = optional(string)
+    target_roles = optional(list(string))
+  })
+}
+
+variable "connectivity_policy_exclude_unhealthy_targets" {
+  type = bool
+  default = true
+}
+
 variable "default_guided_failure_mode" {
   type = string
   default = "EnvironmentDefault"
