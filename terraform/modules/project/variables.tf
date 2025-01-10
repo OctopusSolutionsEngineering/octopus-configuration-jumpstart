@@ -104,7 +104,7 @@ variable "is_version_controlled" {
   default = false
 }
 
-variable "git_anonymous_persistent_settings" {
+variable "git_anonymous_persistence_settings" {
   type = object({
     url = string
     base_path = optional(string)
