@@ -82,6 +82,17 @@ resource "octopusdeploy_project" "project" {
     }
   }
 
+  dynamic "servicenow_extension_settings" {
+    for_each = var.servicenow_extension_settings[*]
+
+    content {
+      is_enabled = servicenow_extension_settings.value.is_enabled
+      connection_id = servicenow_extension_settings.value.connection_id
+      is_state_automatically_transitioned = servicenow_extension_settings.value.is_state_automatically_transitioned
+      standard_change_template_name = servicenow_extension_settings.value.standard_change_template_name
+    }
+  }
+
   release_notes_template = var.release_notes_template
   slug = var.slug
   tenanted_deployment_participation = var.tenanted_deployment_participation

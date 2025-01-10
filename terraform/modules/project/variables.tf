@@ -164,6 +164,16 @@ variable "release_notes_template" {
   default = null
 }
 
+variable "servicenow_extension_settings" {
+  type = object({
+    connection_id = string
+    is_enabled = bool
+    is_state_automatically_transitioned = bool
+    standard_change_template_name = optional(string)
+  })
+  default = null
+}
+
 variable "slug" {
   type = string
   default = null
