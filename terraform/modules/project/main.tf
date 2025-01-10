@@ -58,11 +58,11 @@ resource "octopusdeploy_project" "project" {
 
     content {
       password = git_username_password_persistence_settings.value.password
-      url = git_username_password_persistence_settings.value.url
-      username = git_username_password_persistence_settings.value.username
-      base_path = git_username_password_persistence_settings.value.base_path
-      default_branch = git_username_password_persistence_settings.value.default_branch
-      protected_branches = git_username_password_persistence_settings.value.protected_branches
+      url = nonsensitive(git_username_password_persistence_settings.value.url)
+      username = nonsensitive(git_username_password_persistence_settings.value.username)
+      base_path = nonsensitive(git_username_password_persistence_settings.value.base_path)
+      default_branch = nonsensitive(git_username_password_persistence_settings.value.default_branch)
+      protected_branches = nonsensitive(git_username_password_persistence_settings.value.protected_branches)
     }
   }
 

@@ -127,7 +127,7 @@ variable "git_library_persistence_settings" {
 
 variable "git_username_password_persistence_settings" {
   type = object({
-    password = sensitive(string)
+    password = string
     url = string
     username = string
     base_path = optional(string)
@@ -135,6 +135,7 @@ variable "git_username_password_persistence_settings" {
     protected_branches = optional(set(string))
   })
   default = null
+  sensitive = true
 }
 
 variable "jira_service_management_extension_settings_connection_id" {
