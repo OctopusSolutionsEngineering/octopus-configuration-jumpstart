@@ -183,6 +183,18 @@ variable "space_id" {
   type = string
 }
 
+variable "templates" {
+  type = list(object({
+    name = string
+    default_value = optional(string)
+    display_settings = optional(map(string))
+    help_text = optional(string)
+    id = optional(string)
+    label = optional(string)
+  }))
+  default = null
+}
+
 variable "tenanted_deployment_participation" {
   type = string
   default = "Untenanted"

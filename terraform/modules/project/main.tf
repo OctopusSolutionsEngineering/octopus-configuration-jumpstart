@@ -97,4 +97,16 @@ resource "octopusdeploy_project" "project" {
   slug = var.slug
   tenanted_deployment_participation = var.tenanted_deployment_participation
 
+  dynamic "template" {
+    for_each = var.templates[*]
+
+    content {
+      name = template.value.name
+      default_value = template.value.default_value
+      display_settings = template.value.display_settings
+      help_text = template.value.help_text
+      id = template.value.id
+      label = template.value.label
+    }
+  }
 }
