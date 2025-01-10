@@ -192,7 +192,7 @@ variable "templates" {
     id = optional(string)
     label = optional(string)
   }))
-  default = null
+  default = []
 }
 
 variable "tenanted_deployment_participation" {
