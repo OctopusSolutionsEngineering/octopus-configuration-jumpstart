@@ -2,7 +2,7 @@
 
 ## About this repo
 
-This repo contains examples for using the [Octopus Deploy Terraform Provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) to configure and manage a new Octopus Deploy instance.
+This repo contains examples for using the [Octopus Deploy Terraform Provider](https://registry.terraform.io/providers/OctopusDeploy/octopusdeploy/latest/docs) to configure and manage a new Octopus Deploy instance.
 
 It contains modules acting as wrappers around common resources, making them easier to use as well as providing sensible defaults for some values.
 
